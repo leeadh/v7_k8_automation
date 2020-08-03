@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 """
 Python program for flat text listing the VMs on an
@@ -52,9 +53,12 @@ def printvminfo(vm, depth=1):
         return
 
     summary = vm.summary
-    print(summary.config.name)
-    print(summary.quickStats.guestMemoryUsage)
-
+    if (summary.config.guestId=="crxPod1Guest"):
+        print("VM Name:" + summary.config.name)
+        print("GUEST MemoryUsedMB:" + str(summary.quickStats.guestMemoryUsage)+" MB")
+        print(summary.config.memorySizeMB)
+        print (summary.config.guestId)
+        print("----------------------------------")
 
 def main():
     """
