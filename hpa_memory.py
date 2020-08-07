@@ -97,16 +97,18 @@ def main():
             for vm in vmlist:
 
                 summary=printvminfo(vm)
-                #print(summary)
-                #list.append(printvminfo(vm))
-    print(arr)
     print("--------------------------------")
     
     
     
     """
-    group by key for array
-    the memory utilization has been hardcoded for now in line 113. Please adjust to your desired value for example 0.3 which is 30%. 
+    ############# HPA ALGORITHM STARTS HERE #####################
+    - 
+    - line 112: we are summing the podVM memory utilization by podVM name. This is derived from line 56 where we divide the guest memory usage by the podVM memory assigned
+    - line 113: the memory utilization has been hardcoded for now in line 113. Please adjust to your desired value for example 0.3 which is 30%. 
+    - line 114: we then divide the memory utilization from line 112 by the desired memory utilization from line 113 to get the number of ideal replicas. We then round up the replicas
+    
+    ############# HPA ALGORITHM ENDS HERE #####################
     """
     df = pd.DataFrame(arr)
     dftemp= df.groupby('pod_name', as_index=False).sum()
